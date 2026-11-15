@@ -1,0 +1,20 @@
+name: 'retail_pipeline'
+version: '1.0.0'
+config-version: 2
+
+profile: 'retail_pipeline'
+
+model-paths: ["models"]
+snapshot-paths: ["snapshots"]
+macro-paths: ["macros"]
+
+models:
+  retail_pipeline:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+      fct_orders:
+        +materialized: incremental
